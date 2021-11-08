@@ -13,6 +13,19 @@
 #include "system/KeyboardInput.h"
 #include "TilesGraph.h"
 
+////laboratorio8
+//class GameManager :
+//    public GameObject
+//{
+//protected:
+//    KeyboardInput* keyboardInput;
+//    SDL_Keycode botonVisible = SDLK_V;
+//
+//    void setBotomBomba(SDL_KeyCode _botonvisible) { botonVisible = _botonvisible; }
+//}
+//
+
+//
 using namespace std;
 
 const int SCREEN_WIDTH = 850;
