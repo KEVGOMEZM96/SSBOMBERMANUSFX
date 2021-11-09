@@ -17,7 +17,7 @@ using namespace std;
 
 const int SCREEN_WIDTH = 850;
 const int SCREEN_HEIGHT = 510;
-  
+
 class GameManager
 {
 private:
@@ -29,7 +29,7 @@ private:
 
     //Current displayed texture
     SDL_Texture* gTexture = nullptr;
-       
+
     vector<GameObject*> actoresJuego;
     MapGenerator* generadorMapa;
     KeyboardInput* keyboardInput;
@@ -54,7 +54,7 @@ public:
     static GameManager* Instance();
 
     // Constructores & destructores
-    GameManager();
+    //GameManager();
 
     // Metodos especializados
     bool onInit();
@@ -63,5 +63,5 @@ public:
     void onEvent(SDL_Event* _event);
     void onLoop();
     void onRender();
-    void close();    
+    void close();
 };

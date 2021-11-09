@@ -1,5 +1,7 @@
 #include "GameManager.h"
 
+//Laboratorio 8 Singleton
+GameManager* GameManager::s_instance;
 
 GameManager::GameManager() {
 	gWindow = nullptr;
@@ -10,7 +12,8 @@ GameManager::GameManager() {
 	tilesGraphGM = nullptr;
 	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 }
-// Laboratorio 8 (Singleton)
+
+//Laboratorio 8 Singleton
 GameManager* GameManager::Instance() {
 	if (s_instance == nullptr) {
 		s_instance = new GameManager();
@@ -18,14 +21,12 @@ GameManager* GameManager::Instance() {
 	return s_instance;
 }
 
-
-
 bool GameManager::onInit() {
 
 	//Initialization flag
 	bool success = true;
 
-	if (SDL_Init(SDL_INIT_VIDEO) < 0) 
+	if (SDL_Init(SDL_INIT_VIDEO) < 0)
 	{
 		cout << "SDL could not initialize! SDL_Error: " << SDL_GetError() << endl;
 		success = false;
@@ -96,14 +97,14 @@ void GameManager::onEvent(SDL_Event* _event)
 	case SDL_KEYUP:
 		keyboardInput->TurnKeyOff(_event->key.keysym.sym);
 		break;
-	//	switch (_event->key.keysym.sym) {
-	//	case SDLK_f:
-	//		//SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN);
-	//		break;
-	//	case SDLK_n:
-	//		//SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_MAXIMIZED);
-	//		break;
-	//	}
+		//	switch (_event->key.keysym.sym) {
+		//	case SDLK_f:
+		//		//SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_FULLSCREEN);
+		//		break;
+		//	case SDLK_n:
+		//		//SDL_SetWindowFullscreen(gWindow, SDL_WINDOW_MAXIMIZED);
+		//		break;
+		//	}
 	}
 }
 
