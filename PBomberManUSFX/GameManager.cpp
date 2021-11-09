@@ -10,15 +10,14 @@ GameManager::GameManager() {
 	tilesGraphGM = nullptr;
 	camera = { 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT };
 }
-// laboratorio  8
-
-
-GameManager::GameManager(std::shared_ptr<SDL_Texture> _texture, SDL_Renderer* _renderer, Tile* _tileActual) :
-	GameObject(_texture, _renderer, _tileActual) {
-	keyboardInput = KeyboardInput::Instance();
+// Laboratorio 8 (Singleton)
+GameManager* GameManager::Instance() {
+	if (s_instance == nullptr) {
+		s_instance = new GameManager();
+	}
+	return s_instance;
 }
-	
-	//
+
 
 
 bool GameManager::onInit() {

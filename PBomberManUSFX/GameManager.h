@@ -13,19 +13,6 @@
 #include "system/KeyboardInput.h"
 #include "TilesGraph.h"
 
-////laboratorio8
-//class GameManager :
-//    public GameObject
-//{
-//protected:
-//    KeyboardInput* keyboardInput;
-//    SDL_Keycode botonVisible = SDLK_V;
-//
-//    void setBotomBomba(SDL_KeyCode _botonvisible) { botonVisible = _botonvisible; }
-//}
-//
-
-//
 using namespace std;
 
 const int SCREEN_WIDTH = 850;
@@ -56,7 +43,16 @@ private:
     SDL_Rect camera;
     Uint32 lastTickTime = 0;
 
+    //Laboratorio 8 Singleton
+    static GameManager* s_instance;
+protected:
+    //Laboratorio 8 Singleton
+    GameManager();
+
 public:
+    //Laboratorio 8 Singleton
+    static GameManager* Instance();
+
     // Constructores & destructores
     GameManager();
 

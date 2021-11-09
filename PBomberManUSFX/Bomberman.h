@@ -4,7 +4,7 @@
 
 using namespace std;
 
-class Bomberman : public GamePawn 
+class Bomberman : public GamePawn
 {
 private:
 
