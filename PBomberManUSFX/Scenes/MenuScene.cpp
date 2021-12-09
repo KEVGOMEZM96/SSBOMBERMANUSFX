@@ -129,6 +129,10 @@ void MenuScene::onEvent(const SDL_Event& event)
             case SDL_SCANCODE_RETURN:
                 onMenuItemPress();
                 break;
+                //2do parcial
+           /* case SDL_SCANCODE_Z:
+                spawnPlayer();
+                break;*/
             default:
                 break;
         }

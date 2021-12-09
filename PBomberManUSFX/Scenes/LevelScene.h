@@ -60,6 +60,10 @@ public:
         *
         * @param delta - delta time since previous update in milliseconds
         */
+    /*segundo parcial*/
+    //void spawnPlayer(const int positionX, const int positionY);
+    
+    //void createPlayer();
     virtual void update(const unsigned int delta) override;
 
     void createPlayer(const int positionX, const int positionY, const bool isPressed, const int keycode);

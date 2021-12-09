@@ -19,6 +19,8 @@
 #include "../Scenes/StageScene.h"
 #include "../Util/Pathfinding.h"
 
+
+
 LevelScene::LevelScene(GameManager* _gameManager, const unsigned int _stage, const unsigned int prevScore)
     : Scene(_gameManager), score(prevScore), stage(_stage)
 {
@@ -193,6 +195,7 @@ void LevelScene::generateTileMap()
         }
     }
 }
+//cesped
 
 void LevelScene::spawnGrass(const int positionX, const int positionY)
 {
@@ -615,6 +618,40 @@ void LevelScene::updateGameOverTimer(const unsigned int delta)
     }
 }
 
+create LevelScene::createPlayer(const bool isPressed, const int keycode);
+{
+
+}
+
+void LevelScene::createPlayer( const bool isPressed, const int keycode)
+{
+
+
+    
+    if (isPressed)
+    {
+
+        switch (keycode)
+        {
+        case SDL_SCANCODE_Z:
+            spawnPlayer(const bool isPressed, const int keycode);
+            break;
+
+//            // spawnGrass();
+//            // spawnPlayer();
+//
+//            player = dynamic_pointer_cast<Player>(factory->CreatePlayer(positionX, positionY));
+//
+//
+//            addObject(player);
+//
+//            break;
+//        default:
+//            break;
+        }
+    }
+}
+
 void LevelScene::updateMovement(const bool isPressed, const int keycode)
 {
     if(player == nullptr)
@@ -642,8 +679,11 @@ void LevelScene::updateMovement(const bool isPressed, const int keycode)
             case SDL_SCANCODE_RIGHT:
                 playerDirectionX += 1;
                 break;
-            case SDL_SCANCODE_Z:                
-                break;
+           /* case SDL_SCANCODE_Z: */
+               /* playerDirectionX += 1;
+                addobject(player);     */       
+               /* createPlayer();
+                break;*/
             default:
                 break;
         }
@@ -669,6 +709,12 @@ void LevelScene::updateMovement(const bool isPressed, const int keycode)
             case SDL_SCANCODE_RIGHT:
                 playerDirectionX -= 1;
                 break;
+           /* case SDL_SCANCODE_Z:*/
+               /* playerDirectionX += 1;
+                addobject(player);*/
+              /*  spawnPlayer(const int positionX, const int positionY);;*/
+           /*     break;*/
+
             default:
                 break;
         }
