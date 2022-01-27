@@ -11,6 +11,7 @@
 
 #include "../Const.h"
 #include "../Entities/Enemy.h"
+#include "../Entities/EnemyLoco.h"
 #include "../Entities/Music.h"
 #include "../Entities/Player.h"
 #include "../Entities/Sound.h"
@@ -30,10 +31,6 @@
 #include "../Decorator/DecoratorWall.h"
 #include "../Decorator/BorderDecoratorWall.h"
 #include "../Decorator/ShineDecoratorWall.h"
-
-
-//Enemigo Loco
-#include "../EnemyLoco.h"
 
 /**
     * @brief Level Scene
@@ -73,6 +70,8 @@ private:
     void generateTileMap();
 
     void generateEnemies();
+    void generateEnemiesLoco();
+
     void spawnMetal(const int positionX, const int positionY);
     void spawnGrass(const int positionX, const int positionY);
     void spawnBrick(const int positionX, const int positionY);
@@ -80,11 +79,8 @@ private:
     void spawnWallPacman(const int positionX, const int positionY, Tile* _tile);
 
     void spawnPlayer(const int positionX, const int positionY);
-    
-    //Spawn para enemigoloco traspasamuros
-    void spawnEnemyLoco(GameTexture texture, AIType type, const int positionX, const int positionY);
-    //
     void spawnEnemy(GameTexture texture, AIType type, const int positionX, const int positionY);
+    void spawnEnemyLoco(GameTexture texture, AIType type, const int positionX, const int positionY);
     void spawnBomb(GameGraphicObject* object);
     void spawnBang(GameGraphicObject* object);
     void spawnDoor(GameGraphicObject* object);
@@ -120,16 +116,9 @@ private:
     // update collisions
     void updatePlayerCollision();
     void updateEnemiesCollision();
-
+    void updateEnemiesLocoCollision();
     void updateBangsCollision();
     bool isCollisionDetected(const SDL_Rect& rect1, const SDL_Rect& rect2) const;
-
-    //collision para enemigoloco
-    void updateEnemyLocoCollision();
-
-
-    
-
     // destroy brick
     void destroyBrick(std::shared_ptr<GameGraphicObject> brick);
     // enemy follow to player if in attack radius
@@ -157,14 +146,10 @@ private:
     std::shared_ptr<Player> player = nullptr;                         // player
     std::shared_ptr<Sprite> bomb = nullptr;                           // player's bomb
     std::shared_ptr<Sprite> door = nullptr;                           // door for level finish
-    //
-    std::vector<std::shared_ptr<Enemy>> enemies;                      // enemies vec
+    std::vector<std::shared_ptr<Enemy>> enemies;                      // enemies
+    std::vector<std::shared_ptr<EnemyLoco>> enemiesLoco;                      // enemiesloco
     std::vector<std::pair<GameTile, std::shared_ptr<GameGraphicObject>>> collisions; // collisions
-    
-     //enemigo loco, spawn
-    std::vector<std::shared_ptr<EnemyLoco>> enemiesLoco;       // enemyLoco vec
-    std::vector<std::pair<GameTile, std::shared_ptr<GameGraphicObject>>> collisionsEnemyLoco; // collisions
-    //
+
     std::vector<std::shared_ptr<GameGraphicObject>> bangs;                       // bomb's bang
     GameTile tiles[tileArrayHeight][tileArrayWidth];                      // tilemap
 

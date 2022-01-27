@@ -180,7 +180,10 @@
     <ClCompile Include="Adapters\TextureManager.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyLoco.cpp">
+    <ClCompile Include="Entities\EnemyLoco.cpp">
+      <Filter>Archivos de origen</Filter>
+    </ClCompile>
+    <ClCompile Include="Entities\CartoonEnemyLoco.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
   </ItemGroup>
@@ -359,7 +362,10 @@
     <ClInclude Include="Adapters\TextureManager.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyLoco.h">
+    <ClInclude Include="Entities\EnemyLoco.h">
+      <Filter>Archivos de encabezado</Filter>
+    </ClInclude>
+    <ClInclude Include="Entities\CartoonEnemyLoco.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

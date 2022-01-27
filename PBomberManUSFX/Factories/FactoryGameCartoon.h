@@ -10,7 +10,9 @@
 
 #include "../Const.h"
 #include "../Entities/Enemy.h"
+#include "../Entities/EnemyLoco.h"
 #include "../Entities/CartoonEnemy.h"
+#include "../Entities/CartoonEnemyLoco.h"
 #include "../Entities/Music.h"
 #include "../Entities/CartoonPlayer.h"
 #include "../Entities/Sound.h"
@@ -36,5 +38,6 @@ public:
 
     std::shared_ptr<GameObject> CreatePlayer(const int _positionX, const int _positionY);
     std::shared_ptr<GameObject> CreateEnemy(AIType _type, const int _positionX, const int _positionY);
+    std::shared_ptr<GameObject> CreateEnemyLoco(AIType _type, const int _positionX, const int _positionY);
 };
 

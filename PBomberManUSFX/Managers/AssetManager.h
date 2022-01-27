@@ -24,8 +24,9 @@
 //    Brick,
 //    Player,
 //    Enemy1,
-//    Enemyloco,
+//    Enemy2,
 //    Enemy3,
+//     EnemyLoco,
 //    Bomb,
 //    Explosion,
 //    Door
