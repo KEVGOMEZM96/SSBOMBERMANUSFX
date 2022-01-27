@@ -7,7 +7,6 @@
 #include "../Entities/Text.h"
 #include "../Scenes/Scene.h"
 #include "../GameVersions.h"
-#include "../Scenes/LevelScene.h"
 /**
     * @brief Menu id
     *
@@ -63,8 +62,6 @@ class MenuScene : public Scene
         *
         */
     void onMenuItemPress();
-    //
-    void createPlayer();
 
     //std::shared_ptr<Text> startText = nullptr;      // menu start
     //Text* startText = nullptr; Es lo mismo que la linea anterior

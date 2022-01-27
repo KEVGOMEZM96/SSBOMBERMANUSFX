@@ -19,8 +19,6 @@
 #include "../Scenes/StageScene.h"
 #include "../Util/Pathfinding.h"
 
-
-
 LevelScene::LevelScene(GameManager* _gameManager, const unsigned int _stage, const unsigned int prevScore)
     : Scene(_gameManager), score(prevScore), stage(_stage)
 {
@@ -195,7 +193,6 @@ void LevelScene::generateTileMap()
         }
     }
 }
-//cesped
 
 void LevelScene::spawnGrass(const int positionX, const int positionY)
 {
@@ -204,6 +201,9 @@ void LevelScene::spawnGrass(const int positionX, const int positionY)
     grass->setPosition(positionX, positionY);
     grass->setSize(scaledTileSize, scaledTileSize);
     addObject(grass);
+
+    //collision para enemigo
+     // collisionsEnemyVolador.push_back(std::make_pair(GameTile::Grass, grass));
     backgroundObjectLastNumber++;
 }
 
@@ -225,26 +225,24 @@ void LevelScene::spawnBrick(const int positionX, const int positionY)
     brick->setSize(scaledTileSize, scaledTileSize);
     addObject(brick);
     collisions.push_back(std::make_pair(GameTile::Brick, brick));
+
+   // collisionsEnemyVolador.push_back(std::make_pair(GameTile::Brick, brick));
 }
 
 void LevelScene::spawnStone(const int positionX, const int positionY)
 {
     //std::shared_ptr<BorderDecoratorWall> stone;
-    //auto stone = std::make_shared<BorderDecoratorWall>(
-   /* shared_ptr<BorderDecoratorWall> stone (new BorderDecoratorWall(
-        gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer(), (Wall*)(
-            std::shared_ptr<WallStone>(new WallStone(
-                gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer()
-                )).get()
-            )
-    ));*/
-    GameActor* stone = new ShineDecoratorWall(gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer(), new BorderDecoratorWall(gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer(), new WallStone(gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer())));
-    //auto stone = std::make_shared<WallStone>(gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer());
+   // auto stone = std::make_shared<BorderDecoratorWall>(gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer());
+           
+            
+  //  GameActor* stone = new ShineDecoratorWall(gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer(), new BorderDecoratorWall(gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer(), new WallStone(gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer())));
+    auto stone = std::make_shared<WallStone>(gameManager->getAssetManager()->getTexture(GameTexture::Stone), gameManager->getRenderer());
     stone->setPosition(positionX, positionY);
     stone->setSize(scaledTileSize, scaledTileSize);
     std::shared_ptr<GameActor> temp(stone);
     addObject(temp);
     collisions.push_back(std::make_pair(GameTile::Stone, temp));
+  //  collisionsEnemyVolador.push_back(std::make_pair(GameTile::Stone, stone));
     backgroundObjectLastNumber++;
 }
 
@@ -290,6 +288,21 @@ void LevelScene::spawnEnemy(GameTexture texture, AIType type, const int position
     enemies.push_back(enemy);
 }
 
+//herencia de enemy
+
+void LevelScene::spawnEnemyLoco(GameTexture _texture, AIType _type, const int _positionX, const int _positionY)
+{
+    auto enemyLoco = std::make_shared<EnemyLoco>(gameManager->getAssetManager()->getTexture(GameTexture::EnemyLoco), gameManager->getRenderer());
+    enemyLoco->setPosition(_positionX, _positionY);
+    enemyLoco->setSize(scaledTileSize, scaledTileSize);
+    enemyLoco->setAIType(_type);
+
+    addObject(enemyLoco);
+    enemiesLoco.push_back(enemyLoco);
+}
+
+
+//Generador de enemigos base
 void LevelScene::generateEnemies()
 {
     // we need enemy in random tile
@@ -319,9 +332,51 @@ void LevelScene::generateEnemies()
         // spawn enemy
         int textureRand = randTexture();
         spawnEnemy(textureRand == 0 ? GameTexture::Enemy1 :
-                                        (textureRand == 1 ? GameTexture::Enemy2 : GameTexture::Enemy3),
+                                        (textureRand == 1 ? GameTexture::EnemyLoco : GameTexture::Enemy3),
                     randType() == 0 ? AIType::wandering : AIType::chasing,
                     fieldPositionX + cellY * scaledTileSize, fieldPositionY + cellX * scaledTileSize);
+    }
+
+    //star enemies volador spawn
+
+    //for (int i = 0; i < randCount(); i++)
+    //{
+    //    // try to find suitable tile, se busca un lugar donde spawnear
+    //    int cellX = randCellX();
+    //    int cellY = randCellY();
+    //   /* while (tiles[cellX][cellY] == GameTile::Brick || tiles[cellX][cellY] == GameTile::Stone ||
+    //        tiles[cellX][cellY] == GameTile::EmptyGrass)*/
+
+    //    while (tiles[cellX][cellY] == GameTile::EmptyGrass && tiles[cellX][cellY] != GameTile::Grass && tiles[cellX][cellY] != GameTile::Stone && tiles[cellX][cellY] != GameTile::Brick)
+    //    {
+    //        cellX = randCellX();
+    //        cellY = randCellY();
+    //    }
+    //    // spawn enemy volador, cambiar a if 
+    //    int textureRand = randTexture();
+    //    spawnEnemyVolador(GameTexture::Enemy3,
+    //        randType() == 0 ? AIType::wandering : AIType::chasing,
+    //        fieldPositionX + cellY * scaledTileSize, fieldPositionY + cellX * scaledTileSize);
+    //}
+
+    for (int i = 0; i < randCount(); i++)
+    {
+        // try to find suitable tile, se busca un lugar donde spawnear
+        int cellX = randCellX();
+        int cellY = randCellY();
+        /* while (tiles[cellX][cellY] == GameTile::Brick || tiles[cellX][cellY] == GameTile::Stone ||
+             tiles[cellX][cellY] == GameTile::EmptyGrass)*/
+
+        while (tiles[cellX][cellY] == GameTile::EmptyGrass && tiles[cellX][cellY] != GameTile::Grass && tiles[cellX][cellY] != GameTile::Stone && tiles[cellX][cellY] != GameTile::Brick)
+        {
+            cellX = randCellX();
+            cellY = randCellY();
+        }
+        // spawn enemy loco, cambiar a if 
+        int textureRand = randTexture();
+        spawnEnemyLoco(GameTexture::EnemyLoco,
+            randType() == 0 ? AIType::wandering : AIType::chasing,
+            fieldPositionX + cellY * scaledTileSize, fieldPositionY + cellX * scaledTileSize);
     }
 }
 
@@ -518,6 +573,8 @@ void LevelScene::update(const unsigned int delta)
     updateCamera();
     // update timers
     updateTimers(delta);
+    //update collision of enemies v
+    updateEnemyLocoCollision();
 }
 
 void LevelScene::updateTimers(const unsigned int delta)
@@ -618,40 +675,6 @@ void LevelScene::updateGameOverTimer(const unsigned int delta)
     }
 }
 
-create LevelScene::createPlayer(const bool isPressed, const int keycode);
-{
-
-}
-
-void LevelScene::createPlayer( const bool isPressed, const int keycode)
-{
-
-
-    
-    if (isPressed)
-    {
-
-        switch (keycode)
-        {
-        case SDL_SCANCODE_Z:
-            spawnPlayer(const bool isPressed, const int keycode);
-            break;
-
-//            // spawnGrass();
-//            // spawnPlayer();
-//
-//            player = dynamic_pointer_cast<Player>(factory->CreatePlayer(positionX, positionY));
-//
-//
-//            addObject(player);
-//
-//            break;
-//        default:
-//            break;
-        }
-    }
-}
-
 void LevelScene::updateMovement(const bool isPressed, const int keycode)
 {
     if(player == nullptr)
@@ -679,11 +702,6 @@ void LevelScene::updateMovement(const bool isPressed, const int keycode)
             case SDL_SCANCODE_RIGHT:
                 playerDirectionX += 1;
                 break;
-           /* case SDL_SCANCODE_Z: */
-               /* playerDirectionX += 1;
-                addobject(player);     */       
-               /* createPlayer();
-                break;*/
             default:
                 break;
         }
@@ -709,12 +727,6 @@ void LevelScene::updateMovement(const bool isPressed, const int keycode)
             case SDL_SCANCODE_RIGHT:
                 playerDirectionX -= 1;
                 break;
-           /* case SDL_SCANCODE_Z:*/
-               /* playerDirectionX += 1;
-                addobject(player);*/
-              /*  spawnPlayer(const int positionX, const int positionY);;*/
-           /*     break;*/
-
             default:
                 break;
         }
@@ -825,32 +837,6 @@ void LevelScene::updatePlayerCollision()
         }
     }
 }
-void LevelScene::createPlayer(const int positionX, const int positionY, const bool isPressed, const int keycode)
-{
-//
-    if (isPressed)
-    {
-
-        switch (keycode)
-        {
-        case SDL_SCANCODE_Z:
-
-            // spawnGrass();
-            // spawnPlayer();
-
-            player = dynamic_pointer_cast<Player>(factory->CreatePlayer(positionX, positionY));
-
-
-            addObject(player);
-
-            break;
-        default:
-            break;
-        }
-    }
-}
-//
-
 
 void LevelScene::updateEnemiesCollision()
 {
@@ -909,6 +895,67 @@ void LevelScene::updateEnemiesCollision()
     }
 }
 
+
+//update para las colisiones del enemigo, si las bombas impactan con el y si el player lo toca
+void LevelScene::updateEnemyLocoCollision()
+{
+    // iterate enemies for collision
+    for (const auto& enemyLoco : enemiesLoco)
+    {
+        // iterate drawables for collision
+//collisions deberia declarase nuevamente en el .h
+for (const auto& collisionObject : collisionsEnemyLoco)
+{
+    // check for block collision
+    if (isCollisionDetected(enemyLoco->getRect(), collisionObject.second->getRect()))
+    {
+        // stop moving on collision detection
+        enemyLoco->setMoving(false);
+        enemyLoco->revertLastMove();
+    }
+}
+// check for bomb collision
+if (bomb && isCollisionDetected(enemyLoco->getRect(), bomb->getRect()))
+{
+    // stop moving on collision detection
+    enemyLoco->setMoving(false);
+    enemyLoco->revertLastMove();
+}
+// check for player collision
+if (player != nullptr)
+{
+    // set width to smaller size
+    SDL_Rect playerRect = player->getRect();
+    playerRect.w = static_cast<int>(playerRect.w * 0.2);
+    playerRect.h = static_cast<int>(playerRect.h * 0.2);
+    if (isCollisionDetected(playerRect, enemyLoco->getRect()))
+    {
+        // player killed by enemy
+        removeObject(player);
+        player = nullptr;
+        gameOver();
+    }
+}
+if (player != nullptr)
+{
+    // can attack?
+    if (!enemyLoco->isMovingToCell() && enemyLoco->canAttack())
+    {
+        // check for attack radius
+        if (abs(player->getPositionX() + player->getWidth() / 2 - enemyLoco->getPositionX() -
+            enemyLoco->getWidth() / 2) < enemyLoco->getAttackRadius() &&
+            abs(player->getPositionY() + player->getHeight() / 2 - enemyLoco->getPositionY() -
+                enemyLoco->getHeight() / 2) < enemyLoco->getAttackRadius())
+        {
+            // start follow to player
+            followToPlayer(enemyLoco.get());
+        }
+    }
+}
+    }
+}
+
+
 void LevelScene::updateBangsCollision()
 {
     // check for bang collision
@@ -950,6 +997,30 @@ void LevelScene::updateBangsCollision()
             }
             ++itEnemies;
         }
+
+        
+
+        //check para new enemies
+        auto itEnemiesLoco = enemiesLoco.begin();
+        while (itEnemiesLoco != enemiesLoco.end())
+        {
+            SDL_Rect enemyRect = (*itEnemiesLoco)->getRect();
+            enemyRect.w = static_cast<int>(enemyRect.w * 0.2);
+            enemyRect.h = static_cast<int>(enemyRect.h * 0.2);
+            if (isCollisionDetected(enemyRect, bang->getRect()))
+            {
+                removeObject(*itEnemiesLoco);
+                itEnemiesLoco = enemiesLoco.erase(itEnemiesLoco);
+
+                // enemy killed by bang
+                score += scoreRewardForKill;
+                updateScore();
+                continue;
+            }
+            ++itEnemiesLoco;
+        }
+
+
         // check player
         if(player != nullptr)
         {

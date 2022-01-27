@@ -10,7 +10,7 @@ enum class GameTexture : int
     WallPacman,
     Player,
     Enemy1,
-    Enemy2,
+    EnemyLoco,
     Enemy3,
     Bomb,
     Explosion,
