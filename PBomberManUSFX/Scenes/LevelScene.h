@@ -32,6 +32,9 @@
 #include "../Decorator/BorderDecoratorWall.h"
 #include "../Decorator/ShineDecoratorWall.h"
 
+
+#include "../TipoPlayers.h"
+
 /**
     * @brief Level Scene
     *
@@ -50,6 +53,8 @@ public:
     LevelScene(GameManager* game, const unsigned int _stage, const unsigned int _prevScore);
     LevelScene(GameManager* game, GameVersion _gameVersion, const unsigned int _stage, const unsigned int _prevScore);
     
+
+    LevelScene(GameManager* game, GameVersion _gameVersion, Players _Players, const unsigned int _stage, const unsigned int _prevScore);
     /**
         * @brief Catch SDL2 events
         *
@@ -78,7 +83,8 @@ private:
     void spawnStone(const int positionX, const int positionY);
     void spawnWallPacman(const int positionX, const int positionY, Tile* _tile);
 
-    void spawnPlayer(const int positionX, const int positionY);
+    void spawnPlayer(const int positionX, const int positionY, const int positionX2, const int positionY2,
+        const int positionX3, const int positionY3, const int positionX4, const int positionY4);
     void spawnEnemy(GameTexture texture, AIType type, const int positionX, const int positionY);
     void spawnEnemyLoco(GameTexture texture, AIType type, const int positionX, const int positionY);
     void spawnBomb(GameGraphicObject* object);
@@ -108,15 +114,15 @@ private:
     void updateBangTimer(const unsigned int delta);
     void updateGameOverTimer(const unsigned int delta);
     // update movement
-    void updateMovement(const bool isPressed, const int keycode);
+    // updateMovement(const bool isPressed, const int keycode);
     // update camera
     void updateCamera();
     // score update
     void updateScore();
     // update collisions
-    void updatePlayerCollision();
+   // void updatePlayerCollision();
     void updateEnemiesCollision();
-    void updateEnemiesLocoCollision();
+  //  void updateEnemiesLocoCollision();
     void updateBangsCollision();
     bool isCollisionDetected(const SDL_Rect& rect1, const SDL_Rect& rect2) const;
     // destroy brick
@@ -143,7 +149,7 @@ private:
     std::shared_ptr<Sound> explosionSound = nullptr;                  // explosion sound
     std::shared_ptr<Text> timerNumber = nullptr;                      // timer
     std::shared_ptr<Text> scoreNumber = nullptr;                      // score
-    std::shared_ptr<Player> player = nullptr;                         // player
+  //  std::shared_ptr<Player> player = nullptr;                         // player
     std::shared_ptr<Sprite> bomb = nullptr;                           // player's bomb
     std::shared_ptr<Sprite> door = nullptr;                           // door for level finish
     std::vector<std::shared_ptr<Enemy>> enemies;                      // enemies
@@ -154,8 +160,39 @@ private:
     GameTile tiles[tileArrayHeight][tileArrayWidth];                      // tilemap
 
 
+
+    //player 2
+    std::shared_ptr<Player> player = nullptr;                         // player
+    std::shared_ptr<Player> player2 = nullptr;                         // player
+    std::shared_ptr<Player> player3 = nullptr;                         // player
+    std::shared_ptr<Player> player4 = nullptr;                         // player
+
     int playerDirectionX = 0; // direction used for control
     int playerDirectionY = 0; // direction used for control
+
+    int player2DirectionX = 0; // direction used for control
+    int player2DirectionY = 0; // direction used for control
+
+    int player3DirectionX = 0; // direction used for control
+    int player3DirectionY = 0; // direction used for control
+
+    int player4DirectionX = 0; // direction used for control
+    int player4DirectionY = 0; // direction used for control
+
+    // update movement
+    void updateMovementPlayer(const bool isPressed, const int keycode);
+    void updateMovementPlayer2(const bool isPressed, const int keycode);
+    void updateMovementPlayer3(const bool isPressed, const int keycode);
+    void updateMovementPlayer4(const bool isPressed, const int keycode);
+
+    void updatePlayerCollision();
+    void updatePlayerCollision2();
+    void updatePlayerCollision3();
+    void updatePlayerCollision4();
+
+
+
+
     // timer variables
     int levelTimer = levelTimerStart;
     int levelTimerDelta = 0;
@@ -168,6 +205,7 @@ private:
     bool isWin = false;
     // variables
     unsigned int gameVersion = GAMEVERSION_CLASIC;
+    unsigned int tipoPlayer = PLAYER_1;
     unsigned int score = 0;
     unsigned int stage = 0;
 

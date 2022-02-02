@@ -149,7 +149,6 @@
     <ClCompile Include="Adapters\TileGraph.cpp" />
     <ClCompile Include="Adapters\WallPacman.cpp" />
     <ClCompile Include="Adapters\WallPacmanAdapter.cpp" />
-    <ClCompile Include="Entities\CartoonEnemyLoco.cpp" />
     <ClCompile Include="Decorator\BorderDecoratorWall.cpp" />
     <ClCompile Include="Builder\BuilderClasico.cpp" />
     <ClCompile Include="Builder\BuilderCartoon.cpp" />
@@ -208,7 +207,6 @@
     <ClInclude Include="Adapters\TileGraph.h" />
     <ClInclude Include="Adapters\WallPacman.h" />
     <ClInclude Include="Adapters\WallPacmanAdapter.h" />
-    <ClInclude Include="Entities\CartoonEnemyLoco.h" />
     <ClInclude Include="Decorator\BorderDecoratorWall.h" />
     <ClInclude Include="Builder\BuilderClasico.h" />
     <ClInclude Include="Builder\BuilderCartoon.h" />
@@ -256,6 +254,7 @@
     <ClInclude Include="Entities\SoilGrass.h" />
     <ClInclude Include="Decorator\ShineDecoratorWall.h" />
     <ClInclude Include="system\KeyboardInput.h" />
+    <ClInclude Include="TipoPlayers.h" />
     <ClInclude Include="Util\Pathfinding.h" />
     <ClInclude Include="Entities\Wall.h" />
     <ClInclude Include="Entities\WallMetal.h" />

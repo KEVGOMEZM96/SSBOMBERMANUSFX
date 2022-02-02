@@ -26,13 +26,13 @@ std::shared_ptr<GameObject> FactoryGameCartoon::CreateEnemy(AIType _type, const 
 
     return dynamic_pointer_cast<GameObject>(enemy);
 }
-std::shared_ptr<GameObject> FactoryGameCartoon::CreateEnemyLoco(AIType _type, const int _positionX, const int _positionY)
-{
-    //shared_ptr<GameObject> enemyLoco(nullptr);
-    auto enemyLoco = std::make_shared<CartoonEnemyLoco>(gameManager->getAssetManager()->getTexture(GameTexture::EnemyLoco), gameManager->getRenderer());
-    enemyLoco->setPosition(_positionX, _positionY);
-    enemyLoco->setSize(scaledTileSize, scaledTileSize);
-    enemyLoco->setAIType(_type);
-
-    return dynamic_pointer_cast<GameObject>(enemyLoco);
-}
+//std::shared_ptr<GameObject> FactoryGameCartoon::CreateEnemyLoco(AIType _type, const int _positionX, const int _positionY)
+//{
+//    //shared_ptr<GameObject> enemyLoco(nullptr);
+//    auto enemyLoco = std::make_shared<CartoonEnemyLoco>(gameManager->getAssetManager()->getTexture(GameTexture::EnemyLoco), gameManager->getRenderer());
+//    enemyLoco->setPosition(_positionX, _positionY);
+//    enemyLoco->setSize(scaledTileSize, scaledTileSize);
+//    enemyLoco->setAIType(_type);
+//
+//    return dynamic_pointer_cast<GameObject>(enemyLoco);
+//}

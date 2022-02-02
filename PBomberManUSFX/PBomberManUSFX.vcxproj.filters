@@ -183,9 +183,6 @@
     <ClCompile Include="Entities\EnemyLoco.cpp">
       <Filter>Archivos de origen</Filter>
     </ClCompile>
-    <ClCompile Include="Entities\CartoonEnemyLoco.cpp">
-      <Filter>Archivos de origen</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GameManager.h">
@@ -365,7 +362,7 @@
     <ClInclude Include="Entities\EnemyLoco.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
-    <ClInclude Include="Entities\CartoonEnemyLoco.h">
+    <ClInclude Include="TipoPlayers.h">
       <Filter>Archivos de encabezado</Filter>
     </ClInclude>
   </ItemGroup>

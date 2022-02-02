@@ -7,6 +7,8 @@
 #include "../Entities/Text.h"
 #include "../Scenes/Scene.h"
 #include "../GameVersions.h"
+
+#include "../TipoPlayers.h"
 /**
     * @brief Menu id
     *
@@ -14,10 +16,17 @@
 enum class MenuItem
 {
     None,
-    StartCartoon,
+  /*  StartCartoon,
     StartClasic,
     StartCustom,
-    StartRealistic,
+    StartRealistic,*/
+
+
+
+    Start1Player,
+    Start2Player,
+    Start3Player,
+    Start4Player,
     Exit,
     Last
 };
@@ -66,14 +75,26 @@ class MenuScene : public Scene
     //std::shared_ptr<Text> startText = nullptr;      // menu start
     //Text* startText = nullptr; Es lo mismo que la linea anterior
     
-    std::shared_ptr<Text> startCartoonText = nullptr;      // menu start cartoon
-    std::shared_ptr<Text> startClasicText = nullptr;      // menu start clasic
-    std::shared_ptr<Text> startCustomText = nullptr;      // menu start custom
-    std::shared_ptr<Text> startRealisticText = nullptr;      // menu start realistic
+    //std::shared_ptr<Text> startCartoonText = nullptr;      // menu start cartoon
+    //std::shared_ptr<Text> startClasicText = nullptr;      // menu start clasic
+    //std::shared_ptr<Text> startCustomText = nullptr;      // menu start custom
+    //std::shared_ptr<Text> startRealisticText = nullptr;      // menu start realistic
+
+
+
+
+
+    std::shared_ptr<Text> start1PlayerText = nullptr;
+    std::shared_ptr<Text> start2PlayerText = nullptr;
+    std::shared_ptr<Text> start3PlayerText = nullptr;
+    std::shared_ptr<Text> start4PlayerText = nullptr;
+    //____________________________________________________
+
+
     std::shared_ptr<Text> exitText = nullptr;       // menu exit
     std::shared_ptr<Music> menuMusic = nullptr;     // menu music
-    MenuItem currentSelectedMenu = MenuItem::StartCartoon; // current selected menu
-
+   // MenuItem currentSelectedMenu = MenuItem::StartCartoon; // current selected menu
+    MenuItem currentSelectedMenu = MenuItem::Start1Player; // current selected menu
     // const colors for menu selection
     const SDL_Color colorStandard = {255, 255, 255, 255};
     const SDL_Color colorPressed = {66, 134, 244, 255};

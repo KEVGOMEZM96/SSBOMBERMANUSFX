@@ -94,7 +94,7 @@ private:
     // AI
     AIType aiType = AIType::wandering; // AI type
     // consts
-    const float baseSpeed = 0.018f;    // speed of enemy loco 
+    const float baseSpeed = 0.0018f;    // speed of enemy loco 
     const float attackSpeed = 0.0025f;   // speed of attack enemy
     const int attackRadius = 4;         // attack radius (in cells)
     // animations
