@@ -60,29 +60,29 @@ MenuScene::MenuScene(GameManager* _gameManager) : Scene(_gameManager)
     startText->setPosition(static_cast<int>(gameManager->getWindowWidth() / 2.0f - startText->getWidth() / 2.0f), background->getHeight() + 60);
     addObject(startText);*/
 
-    start1PlayerText = std::make_shared<Text>(gameManager->getAssetManager()->getFont(), gameManager->getRenderer(), "1 PLAYER");
-    start1PlayerText->setColor(colorPressed);
-    start1PlayerText->setSize(static_cast<int>(gameManager->getWindowWidth() / 4.0f), static_cast<int>(gameManager->getWindowHeight() / 20.0f));
-    start1PlayerText->setPosition(static_cast<int>(gameManager->getWindowWidth() / 2.0f - start1PlayerText->getWidth() / 2.0f), background->getHeight() + 20);
-    addObject(start1PlayerText);
+    Player1starText = std::make_shared<Text>(gameManager->getAssetManager()->getFont(), gameManager->getRenderer(), "1 PLAYER");
+    Player1starText->setColor(colorPressed);
+    Player1starText->setSize(static_cast<int>(gameManager->getWindowWidth() / 4.0f), static_cast<int>(gameManager->getWindowHeight() / 20.0f));
+    Player1starText->setPosition(static_cast<int>(gameManager->getWindowWidth() / 2.0f - Player1starText->getWidth() / 2.0f), background->getHeight() + 20);
+    addObject(Player1starText);
 
-    start2PlayerText = std::make_shared<Text>(gameManager->getAssetManager()->getFont(), gameManager->getRenderer(), "2 PLAYER");
-    start2PlayerText->setColor(colorStandard);
-    start2PlayerText->setSize(static_cast<int>(gameManager->getWindowWidth() / 4.0f), static_cast<int>(gameManager->getWindowHeight() / 20.0f));
-    start2PlayerText->setPosition(static_cast<int>(gameManager->getWindowWidth() / 2.0f - start1PlayerText->getWidth() / 2.0f), background->getHeight() + 50);
-    addObject(start2PlayerText);
+    Player2starText = std::make_shared<Text>(gameManager->getAssetManager()->getFont(), gameManager->getRenderer(), "2 PLAYER");
+    Player2starText->setColor(colorStandard);
+    Player2starText->setSize(static_cast<int>(gameManager->getWindowWidth() / 4.0f), static_cast<int>(gameManager->getWindowHeight() / 20.0f));
+    Player2starText->setPosition(static_cast<int>(gameManager->getWindowWidth() / 2.0f - Player1starText->getWidth() / 2.0f), background->getHeight() + 50);
+    addObject(Player2starText);
 
-    start3PlayerText = std::make_shared<Text>(gameManager->getAssetManager()->getFont(), gameManager->getRenderer(), "3 PLAYER");
-    start3PlayerText->setColor(colorStandard);
-    start3PlayerText->setSize(static_cast<int>(gameManager->getWindowWidth() / 4.0f), static_cast<int>(gameManager->getWindowHeight() / 20.0f));
-    start3PlayerText->setPosition(static_cast<int>(gameManager->getWindowWidth() / 2.0f - start2PlayerText->getWidth() / 2.0f), background->getHeight() + 80);
-    addObject(start3PlayerText);
+    Player3starText = std::make_shared<Text>(gameManager->getAssetManager()->getFont(), gameManager->getRenderer(), "3 PLAYER");
+    Player3starText->setColor(colorStandard);
+    Player3starText->setSize(static_cast<int>(gameManager->getWindowWidth() / 4.0f), static_cast<int>(gameManager->getWindowHeight() / 20.0f));
+    Player3starText->setPosition(static_cast<int>(gameManager->getWindowWidth() / 2.0f - Player2starText->getWidth() / 2.0f), background->getHeight() + 80);
+    addObject(Player3starText);
 
-    start4PlayerText = std::make_shared<Text>(gameManager->getAssetManager()->getFont(), gameManager->getRenderer(), "4 PLAYER");
-    start4PlayerText->setColor(colorStandard);
-    start4PlayerText->setSize(static_cast<int>(gameManager->getWindowWidth() / 4.0f), static_cast<int>(gameManager->getWindowHeight() / 20.0f));
-    start4PlayerText->setPosition(static_cast<int>(gameManager->getWindowWidth() / 2.0f - start3PlayerText->getWidth() / 2.0f), background->getHeight() + 110);
-    addObject(start4PlayerText);
+    Player4starText = std::make_shared<Text>(gameManager->getAssetManager()->getFont(), gameManager->getRenderer(), "4 PLAYER");
+    Player4starText->setColor(colorStandard);
+    Player4starText->setSize(static_cast<int>(gameManager->getWindowWidth() / 4.0f), static_cast<int>(gameManager->getWindowHeight() / 20.0f));
+    Player4starText->setPosition(static_cast<int>(gameManager->getWindowWidth() / 2.0f - Player3starText->getWidth() / 2.0f), background->getHeight() + 110);
+    addObject(Player4starText);
 
 
 
@@ -113,7 +113,7 @@ MenuScene::MenuScene(GameManager* _gameManager) : Scene(_gameManager)
     // exit menu
     exitText = std::make_shared<Text>(gameManager->getAssetManager()->getFont(), gameManager->getRenderer(), "SALIR");
     exitText->setSize(static_cast<int>(gameManager->getWindowWidth() / 5.0f), static_cast<int>(gameManager->getWindowHeight() / 20.0f));
-    exitText->setPosition(start1PlayerText->getPositionX(), start4PlayerText->getPositionY() + exitText->getHeight() + 40);
+    exitText->setPosition(Player1starText->getPositionX(), Player4starText->getPositionY() + exitText->getHeight() + 40);
     addObject(exitText);
 
     gameManager->getSceneManager()->addScene("gameover", std::make_shared<GameOverScene>(gameManager));
@@ -173,25 +173,25 @@ void MenuScene::onMenuItemSelect()
 
 
 
-    start1PlayerText->setColor(colorStandard);
-    start2PlayerText->setColor(colorStandard);
-    start3PlayerText->setColor(colorStandard);
-    start4PlayerText->setColor(colorStandard);
+    Player1starText->setColor(colorStandard);
+    Player2starText->setColor(colorStandard);
+    Player3starText->setColor(colorStandard);
+    Player4starText->setColor(colorStandard);
     exitText->setColor(colorStandard);
     // change color of selected menu item
     switch(currentSelectedMenu)
     {
     case MenuItem::Start1Player:
-        start1PlayerText->setColor(colorPressed);
+        Player1starText->setColor(colorPressed);
         break;
     case MenuItem::Start2Player:
-        start2PlayerText->setColor(colorPressed);
+        Player2starText->setColor(colorPressed);
         break;
     case MenuItem::Start3Player:
-        start3PlayerText->setColor(colorPressed);
+        Player3starText->setColor(colorPressed);
         break;
     case MenuItem::Start4Player:
-        start4PlayerText->setColor(colorPressed);
+        Player4starText->setColor(colorPressed);
         break;
     case MenuItem::Exit:
         exitText->setColor(colorPressed);

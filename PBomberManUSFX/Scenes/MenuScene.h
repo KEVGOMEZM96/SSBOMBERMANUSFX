@@ -84,10 +84,10 @@ class MenuScene : public Scene
 
 
 
-    std::shared_ptr<Text> start1PlayerText = nullptr;
-    std::shared_ptr<Text> start2PlayerText = nullptr;
-    std::shared_ptr<Text> start3PlayerText = nullptr;
-    std::shared_ptr<Text> start4PlayerText = nullptr;
+    std::shared_ptr<Text> Player1starText = nullptr;
+    std::shared_ptr<Text> Player2starText = nullptr;
+    std::shared_ptr<Text> Player3starText = nullptr;
+    std::shared_ptr<Text> Player4starText = nullptr;
     //____________________________________________________
 
 
